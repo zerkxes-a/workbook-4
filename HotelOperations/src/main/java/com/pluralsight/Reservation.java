@@ -46,4 +46,7 @@ public class Reservation {
     public void setWeekend(boolean weekend) {
         this.weekend = weekend;
     }
+    public float getReservationTotal(){
+        return getPrice() * numberOfNights;
+    }
 }

@@ -10,11 +10,12 @@ public class Employee {
     private double payRate;
     private double hoursWorked;
     private double inTime;
+    private LocalDateTime timeClock;
 
 
     public Employee(int employeeId, double hoursWorked, double payRate, String name, String department) {
         this.employeeId = employeeId;
-        this.hoursWorked = hoursWorked;
+        this.hoursWorked = 0;
         this.payRate = payRate;
         this.name = name;
         this.department = department;
@@ -55,14 +56,23 @@ public class Employee {
          this.inTime = time;
     }
     public void punchIn(){
-        time = LocalDateTime.time();
+        LocalDateTime dateTime = LocalDateTime.now();
+            double hour = dateTime.getHour();
+            double minute = dateTime.getMinute();
+
+            inTime = hour + (minute / 60.0);
     }
 
-//TODO AGAIN ANNA W H A T
+
     public void punchOut(double time){
         hoursWorked += time - inTime;
     }
     public void punchOut(){
+        LocalDateTime dateTime = LocalDateTime.now();
+        double hour = dateTime.getHour();
+        double minute = dateTime.getMinute();
 
+        double time = hour + (minute / 60.0);
+        hoursWorked += time - inTime;
     }
 }
